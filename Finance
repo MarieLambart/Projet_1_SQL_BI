@@ -1,0 +1,26 @@
+Le chiffre d'affaires des commandes des deux derniers mois par pays :
+
+SELECT year(o.orderDate) as Year,
+        monthname(o.orderDate) as Month,
+        c.country,
+        sum(p.amount) as Turnover
+FROM orders o 
+    JOIN customers AS c  ON o.customernumber = c.customernumber
+    JOIN payments AS p   ON p.customernumber = c.customernumber 
+WHERE o.status != 'Cancelled' AND (o.orderdate > DATE_sub(curdate(), INTERVAL 2 month))
+GROUP BY year(o.orderDate), month(o.orderDate), c.country
+ORDER BY year(o.orderDate) DESC, month(o.orderDate) DESC;
+
+Les commandes qui n'ont pas encore été payées : (problème avec les tables pour faire la jointure=résultat approximatif)
+
+SELECT DISTINCT ots.customerNumber,ots.ordernumber, ots.totalorder, p.checknumber, p.amount
+FROM (
+SELECT od.ordernumber, sum(quantityordered*priceeach) AS totalorder, o.customernumber
+FROM orderdetails AS od 
+JOIN orders AS o 
+ON od.ordernumber=o.ordernumber
+GROUP BY od.ordernumber
+ORDER BY od.ordernumber ) AS ots
+LEFT JOIN payments AS p ON ots.totalorder = p.amount
+
+WHERE p.amount IS NULL group BY ots.customerNumber, ots.totalorder;
