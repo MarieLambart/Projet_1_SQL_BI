@@ -1,0 +1,58 @@
+Le nombre de produits vendus par catégorie et par mois, avec comparaison et taux d'évolution par rapport au même mois de l'année précédente.
+
+select s.ordermonth,s.productline, SUM(s.quantityordered_2020) AS quantityordered_2020,SUM(s.quantityordered_2021) AS quantity_ordered_2021,
+ROUND((((SUM(s.quantityordered_2021))-(SUM(s.quantityordered_2020)))/(SUM(s.quantityordered_2020))),4) AS Evolution
+from (SELECT MONTH(orders.orderdate) as ordermonth,
+        YEAR(orders.orderdate) as orderyear,
+        products.productline, 
+        SUM(quantityordered) AS quantityordered_2020, 
+        0 AS quantityordered_2021
+		FROM orderdetails
+		INNER JOIN products ON products.productcode=orderdetails.productcode
+		INNER JOIN `orders` ON orders.ordernumber=orderdetails.ordernumber
+        WHERE YEAR(orders.orderdate) = 2020
+        GROUP BY productline,orderyear, ordermonth
+UNION
+		SELECT MONTH(orders.orderdate) as ordermonth,
+        YEAR(orders.orderdate) as orderyear,
+        products.productline, 
+        0 AS quantityordered_2020,
+        SUM(quantityordered) AS quantityordered_2021
+		FROM orderdetails
+		INNER JOIN products ON products.productcode=orderdetails.productcode
+		INNER JOIN `orders` ON orders.ordernumber=orderdetails.ordernumber
+        WHERE YEAR(orders.orderdate) = 2021
+        GROUP BY productline,orderyear, ordermonth) AS s
+GROUP BY s.productline,s.ordermonth
+ORDER BY s.ordermonth,s.productline;
+
+
+Requêtes supplémentaires :
+
+Clients perdus en 2021 par rapport à l'année 2020 :
+
+SELECT MONTH(orders.orderdate) as ordermonth,
+        YEAR(orders.orderdate) as orderyear,
+        customers.customername,
+        customers.country,
+        SUM(orderdetails.quantityordered*orderdetails.priceeach) AS CA_2020,
+        0 AS CA_2021
+		FROM customers
+		INNER JOIN orders ON customers.customernumber = orders.customernumber
+		INNER JOIN orderdetails ON orders.ordernumber = orderdetails.ordernumber
+        WHERE YEAR(orders.orderdate) = 2020
+        GROUP BY customername,orderyear, ordermonth;
+
+Clients gagnés en 2021 par rapport à l'année 2020 :
+
+SELECT MONTH(orders.orderdate) as ordermonth,
+        YEAR(orders.orderdate) as orderyear,
+        customers.customername,
+        customers.country,
+        0 AS CA_2020,
+        SUM(orderdetails.quantityordered*orderdetails.priceeach) AS CA_2021
+		FROM customers
+		INNER JOIN orders ON customers.customernumber = orders.customernumber
+		INNER JOIN orderdetails ON orders.ordernumber = orderdetails.ordernumber
+        WHERE YEAR(orders.orderdate) = 2021
+        GROUP BY customername,orderyear, ordermonth;
