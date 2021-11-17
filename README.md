@@ -16,7 +16,7 @@ Logistique: Le stock des 5 produits les plus commandés.
 Ressources Humaines: Chaque mois, les 2 vendeurs avec le chiffre d'affaires le plus élevé.
 
 
-![alt tag]
+![alt tag](https://user-images.githubusercontent.com/90702580/142235696-7bf21a69-cfd3-4dc2-ae4a-981e997931d1.png)
 
 # Outil
 
