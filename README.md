@@ -15,7 +15,10 @@ Les commandes qui n'ont pas encore été payées.
 Logistique: Le stock des 5 produits les plus commandés.
 Ressources Humaines: Chaque mois, les 2 vendeurs avec le chiffre d'affaires le plus élevé.
 
-# Outils
+
+![alt tag]
+
+# Outil
 
 Le gestionnaire ne veut pas faire de SQL, il veut pouvoir accéder aux données automatiquement et graphiquement. Vous pouvez donc proposer un outil de votre choix, à condition que le tableau de bord soit pertinent.
 
