@@ -8,12 +8,13 @@ Vous êtes mandaté par une entreprise de vente de maquettes et modèles réduit
 
 Votre tableau de bord doit s'articuler autour de ces 4 thèmes principaux : les ventes, la finance, la logistique et les ressources humaines.
 Voici les indicateurs qui devraient être présents dans votre tableau de bord. Des visualisations seraient également appréciées. Et vous êtes invité à exercer votre rôle de conseil, par proposer des KPI et des graphiques supplémentaires.
-Ventes: Le nombre de produits vendus par catégorie et par mois, avec comparaison et taux d'évolution par rapport au même mois de l'année précédente.
-Finances: 
+
+- Ventes: Le nombre de produits vendus par catégorie et par mois, avec comparaison et taux d'évolution par rapport au même mois de l'année précédente.
+- Finances: 
 Le chiffre d'affaires des commandes des deux derniers mois par pays. 
 Les commandes qui n'ont pas encore été payées.
-Logistique: Le stock des 5 produits les plus commandés.
-Ressources Humaines: Chaque mois, les 2 vendeurs avec le chiffre d'affaires le plus élevé.
+- Logistique: Le stock des 5 produits les plus commandés.
+- Ressources Humaines: Chaque mois, les 2 vendeurs avec le chiffre d'affaires le plus élevé.
 
 # Ressources
 
