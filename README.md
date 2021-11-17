@@ -35,3 +35,20 @@ Vous pouvez utiliser l'outil de votre choix. Pour information, la société util
 Attention : vous avez choisi votre propre outil de reporting. Mais le but est de pratiquer SQL. Vous devez donc obtenir les données dans les requêtes SQL. Par exemple, pour les "2 vendeurs avec le chiffre d'affaires le plus élevé pour chaque mois" : 
 ce que nous voudrions : une requête SQL avec uniquement les "2 vendeurs avec le chiffre d'affaires le plus élevé pour chaque mois", et une dataviz pour montrer cela.
 ce qu'on ne veut pas : une requête SQL avec chaque vendeur, puis des filtres dans votre outil de reporting.
+
+
+# Visuel Dashboard Google Data Studio :
+
+![Ventes1](https://user-images.githubusercontent.com/90702580/142240379-4412c113-48c2-4543-952d-a8cb1aaaf1a5.png)
+
+![Ventes2](https://user-images.githubusercontent.com/90702580/142240398-b79306b6-fca0-4792-b327-e60135537d8b.png)
+
+![Logistique](https://user-images.githubusercontent.com/90702580/142240411-b402653f-923a-4aa4-85d2-e5fa510e5bd3.png)
+
+![Finance1](https://user-images.githubusercontent.com/90702580/142240423-128bc5d5-19f0-4d5e-84ad-a9ded9ee8349.png)
+
+![Finance2](https://user-images.githubusercontent.com/90702580/142240445-64544ade-ebe7-4b21-a5ae-e12d54cccf5c.png)
+
+![RH1](https://user-images.githubusercontent.com/90702580/142240456-8e23e628-df51-4d2a-95b3-809c1f7e8919.png)
+
+![RH2](https://user-images.githubusercontent.com/90702580/142240466-de5f5428-ce70-4efa-8fde-8904c73065cf.png)
