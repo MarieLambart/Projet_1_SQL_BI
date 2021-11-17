@@ -1,0 +1,67 @@
+Chaque mois, les 2 vendeurs avec le chiffre d'affaires le plus élevé :
+
+SELECT * FROM   (
+	SELECT YEAR(ord.orderdate) as ordyear
+			, MONTHname(ord.orderdate) as ordmonthname
+			, CONCAT_WS('   ', UPPER(e.lastname), e.firstname) as `NameFirstname`
+			, SUM(round(od.quantityordered*od.priceeach)) as CA
+    	, o.country
+    	, o.territory
+    	, (year(ord.orderdate)*100 + month(ord.orderdate)) as dateNumber 											##Convert the date (yy+mm) into number, so it is easier to sort the date##
+    	, ROW_NUMBER() OVER(PARTITION BY year(ord.orderdate), month(ord.orderdate) 
+		 												ORDER BY SUM(od.quantityordered*od.priceeach) DESC) as `RowNumber` ##To select only the top 2 by category##
+  FROM orderdetails AS od 
+			JOIN orders as ord ON ord.ordernumber = od.ordernumber
+			JOIN customers as c ON c.customerNumber = ord.customernumber
+			JOIN employees as e ON e.employeenumber = c.salesrepemployeenumber
+			JOIN offices as o ON o.officecode = e.officecode
+  GROUP BY dateNumber, c.salesRepEmployeeNumber
+  ORDER BY dateNumber DESC, CA DESC
+        ) AS top_salesmen
+  WHERE `RowNumber` <= 2;
+  
+
+Les 2 meilleurs vendeurs du mois dernier :
+
+SELECT * FROM   
+  (
+	SELECT YEAR(ord.orderdate) AS oyear
+      , MONTHname(ord.orderdate) AS omonthname
+      , CONCAT_WS('   ', UPPER(e.lastname), e.firstname) As `NameFirstname`
+      , SUM(round(od.quantityordered*od.priceeach)) AS CA
+      , o.country
+      , o.territory
+      , ord.orderdate as `OrderDate`
+      , (year(ord.orderdate)*100 + month(ord.orderdate)) as dateNumber
+      , ROW_NUMBER() OVER(PARTITION BY year(ord.orderdate), month(ord.orderdate) ORDER BY SUM(od.quantityordered*od.priceeach) DESC) As `RowNumber`
+      , count(c.salesRepEmployeeNumber) as TopSeller
+  FROM orderdetails AS od 
+      JOIN orders as ord ON ord.ordernumber = od.ordernumber
+      JOIN customers AS c ON c.customerNumber = ord.customernumber
+      JOIN employees AS e ON e.employeenumber = c.salesrepemployeenumber
+      JOIN offices AS o ON o.officecode = e.officecode
+  GROUP BY dateNumber, c.salesRepEmployeeNumber
+  ) AS top_salesmen
+	WHERE `RowNumber` <= 2 and `OrderDate` > DATE_sub(curdate(), INTERVAL 1 month);
+  
+  
+Les meilleurs vendeurs par région : 
+
+SELECT * FROM   
+  (
+	SELECT YEAR(ord.orderdate) AS oyear
+	  , MONTHname(ord.orderdate) AS omonthname
+  	, UPPER(e.lastname) as `SellerName`
+    , e.firstname
+  	, SUM(round(od.quantityordered*od.priceeach)) AS turnover
+    , o.country
+    , o.territory
+    , (year(ord.orderdate)*100 + month(ord.orderdate)) as dateNumber
+  FROM orderdetails AS od 
+		JOIN orders as ord ON ord.ordernumber = od.ordernumber
+		JOIN customers AS c ON c.customerNumber = ord.customernumber
+		JOIN employees AS e ON e.employeenumber = c.salesrepemployeenumber
+		JOIN offices AS o ON o.officecode = e.officecode
+  GROUP BY dateNumber, c.salesRepEmployeeNumber
+  ) AS top_salesmen
+   ;
