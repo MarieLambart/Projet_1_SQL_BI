@@ -30,13 +30,6 @@ Pour information, la base de données est disponible sur un serveur d'entreprise
 La société vous fournit également le script que vous pouvez exécuter sur votre serveur MySQL local. Les données sont identiques, et il s'arrête à la fin du mois précédent.
 Le matin de la démo, les données seront actualisées avec des données nouvelles et fraîches (et vous pourrez recevoir le script de mise à jour si vous le faites localement). La démo devrait donc afficher les dernières données disponibles.
 
-# Outil de reporting
-
-Vous pouvez utiliser l'outil de votre choix. Pour information, la société utilisait auparavant la feuille de calcul LibreOffice Calc, donc si vous souhaitez l'utiliser, vous pouvez voir le PrintScreen pour le connecter. Pour être plus collaboratif, nous avons quelques printscreens sur la connexion de Google Data Studio au serveur cloud. Et bien sûr, vous pouvez utiliser de superbes outils de Business Intelligence de reporting comme Tableau Software. A vous de présenter le meilleur tableau de bord possible sur l'outil de votre choix.
-Attention : vous avez choisi votre propre outil de reporting. Mais le but est de pratiquer SQL. Vous devez donc obtenir les données dans les requêtes SQL. Par exemple, pour les "2 vendeurs avec le chiffre d'affaires le plus élevé pour chaque mois" : 
-ce que nous voudrions : une requête SQL avec uniquement les "2 vendeurs avec le chiffre d'affaires le plus élevé pour chaque mois", et une dataviz pour montrer cela.
-ce qu'on ne veut pas : une requête SQL avec chaque vendeur, puis des filtres dans votre outil de reporting.
-
 
 # Visuel Dashboard Google Data Studio :
 
